@@ -4,6 +4,7 @@ import { HeroData } from '@workspace/shared';
 import { useAppStore } from '../store/useAppStore';
 import { tData } from '../utils/i18n';
 import { translations } from '../locales';
+import cvFile from '@assets/CV_VinhVP.pdf';
 
 interface Props {
   heroData: HeroData;
@@ -25,9 +26,9 @@ export default function Hero({ heroData }: Props) {
         >
           <div className="relative w-32 h-32 sm:w-48 sm:h-48 lg:w-full lg:h-full lg:aspect-[4/5] bg-surface-container-low overflow-hidden group border border-outline-variant/30 lg:border-none rounded-full lg:rounded-none">
             <img
-              src="https://picsum.photos/seed/profile/800/1000"
+              src="https://media.licdn.com/dms/image/v2/D4D03AQEcDXmj1mTJnQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1667814964345?e=1776297600&v=beta&t=uFfKVAMYL3hkME2sm1s4Ji3QUM_9NOjUGuAFu5_yLug"
               alt="Profile"
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              className="w-full h-full object-cover transition-all duration-700"
               referrerPolicy="no-referrer"
             />
             <div className="hidden lg:block absolute inset-0 border-[16px] border-surface-container-low/50 pointer-events-none" />
@@ -51,9 +52,13 @@ export default function Hero({ heroData }: Props) {
               {tData(t.description, language)}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
-              <button className="w-full sm:w-auto bg-primary text-white font-headline font-bold px-8 py-4 flex items-center justify-center gap-3 hover:bg-primary/90 transition-all active:scale-95 uppercase tracking-wide text-[10px] sm:text-sm">
+              <a 
+                href={cvFile}
+                download="CV_VinhVP.pdf"
+                className="w-full sm:w-auto bg-primary text-white font-headline font-bold px-8 py-4 flex items-center justify-center gap-3 hover:bg-primary/90 transition-all active:scale-95 uppercase tracking-wide text-[10px] sm:text-sm"
+              >
                 {tStatic.download} <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
+              </a>
               <a href="#portfolio" className="font-headline font-bold uppercase text-[9px] sm:text-xs tracking-widest border-b-2 border-outline-variant hover:border-primary transition-all py-2">
                 {tStatic.viewWorks}
               </a>

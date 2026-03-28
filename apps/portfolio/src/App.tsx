@@ -29,7 +29,7 @@ const fetchPortfolioData = async ({ queryKey }: any) => {
       //   VN: "Lập Trình Viên Frontend & Kỹ Sư React"
       // },
       titleHighlight: {
-        EN: "Frontend Developer",
+        EN: "Front-end Developer",
         VN: "Lập Trình Viên Front-end"
       },
       titleSuffix: {
@@ -58,7 +58,7 @@ const fetchPortfolioData = async ({ queryKey }: any) => {
         description: { EN: "A production-level ERP system for manufacturing workflow management. Built multiple modules including Production, Inventory, Accounting, and Reporting with high-performance data handling (10,000+ rows). Optimized rendering and API efficiency using React Query and memoization.", VN: "Hệ thống ERP cấp độ production phục vụ quản lý sản xuất. Xây dựng phân hệ Sản xuất, Tồn kho, Kế toán với khả năng xử lý mượt mà trên 10.000+ bản ghi. Tối ưu performance bằng React Query và memoization." },
         year: "2024-Present",
         tags: ["REACT", "TYPESCRIPT", "REDUX", "REACT QUERY", "TAILWIND-CSS"],
-        image: "https://picsum.photos/seed/erp/1200/800"
+        image: "https://erp.namvietpackaging.com/assets/logo.square.transparent-B6QBqClv.png"
       },
       {
         id: "2",
@@ -66,7 +66,7 @@ const fetchPortfolioData = async ({ queryKey }: any) => {
         description: { EN: "An internal HRM system supporting employee lifecycle, project tracking, and operational workflows. Developed dynamic dashboards with filtering, conditional rendering, and optimized component structure for maintainability.", VN: "Hệ thống HRM nội bộ quản lý vòng đời nhân viên và tiến độ dự án. Phát triển Dashboard động kèm filter dữ liệu, tối ưu độ bảo trì component." },
         year: "2022-2023",
         tags: ["SVELTE", "TYPESCRIPT", "TAILWIND-CSS"],
-        image: "https://picsum.photos/seed/hrm/1200/800"
+        image: "https://www.designveloper.com/wp-content/uploads/2024/05/banner-hrm-project-detail.png"
       },
       {
         id: "3",
@@ -74,7 +74,7 @@ const fetchPortfolioData = async ({ queryKey }: any) => {
         description: { EN: "An internal time tracking system replacing third-party tools. Implemented time logging, validation, and real-time synchronization with backend services to ensure data accuracy.", VN: "Hệ thống Tracking thời gian nội bộ thay thế giải pháp bên thứ 3. Tích hợp validation và đồng bộ realtime với backend." },
         year: "2022-2023",
         tags: ["REACT", "TYPESCRIPT", "BOOTSTRAP"],
-        image: "https://picsum.photos/seed/cattr/1200/800"
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjThrVe5PxOU0lLaQwhr8eS_GaIG_5HoC3Aw&s"
       },
       {
         id: "4",
@@ -88,7 +88,7 @@ const fetchPortfolioData = async ({ queryKey }: any) => {
         },
         year: "2021",
         tags: ["HTML", "CSS", "JAVASCRIPT", "PYTHON"],
-        image: "https://picsum.photos/seed/teky/1200/800"
+        image: "https://media.licdn.com/dms/image/v2/C4D1BAQGOmKvh-bsU_A/company-background_10000/company-background_10000/0/1583347276386?e=2147483647&v=beta&t=rmxtB9kH7fSfAjMAfbxJbbmV3VekQ3JLFKWswfilano"
       }
     ],
     experiences: [

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
 import { Experience } from '@workspace/shared';
+import { useAppStore } from '../store/useAppStore';
+import { translations } from '../locales';
 
 interface Props {
   experiences: Experience[];
@@ -9,6 +11,8 @@ interface Props {
 
 export default function ExperienceSection({ experiences }: Props) {
   const [activeAccordion, setActiveAccordion] = useState<string | null>(experiences?.[0]?.id || null);
+  const { language } = useAppStore();
+  const t = translations[language].experience;
 
   if (!experiences || experiences.length === 0) return null;
 
@@ -17,8 +21,8 @@ export default function ExperienceSection({ experiences }: Props) {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-12 gap-12">
           <div className="col-span-12 lg:col-span-4">
-            <h2 className="font-headline text-5xl font-bold mb-8 uppercase leading-[0.9]">Work <br/><span className="text-primary">History</span></h2>
-            <p className="text-on-surface-variant text-lg">The path of building robust digital foundations across various industries.</p>
+            <h2 className="font-headline text-5xl font-bold mb-8 uppercase leading-[0.9]">{t.titlePart1} <br/><span className="text-primary">{t.titlePart2}</span></h2>
+            <p className="text-on-surface-variant text-lg">{t.desc}</p>
           </div>
           
           <div className="col-span-12 lg:col-span-8 space-y-4">

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GitBranch } from 'lucide-react';
+import { useAppStore } from '../store/useAppStore';
+import { translations } from '../locales';
 
 const ContributionGraph = () => {
   const [cells, setCells] = useState<number[]>([]);
@@ -33,11 +35,14 @@ const ContributionGraph = () => {
 };
 
 export default function Activity() {
+  const { language } = useAppStore();
+  const t = translations[language].activity;
+
   return (
     <section id="activity" className="py-32 px-6 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <span className="font-headline font-bold text-xs tracking-[0.3em] text-primary uppercase mb-4 block">OSS & Git Metrics</span>
-        <h2 className="font-headline text-4xl font-bold italic uppercase">Contribution Activity</h2>
+        <span className="font-headline font-bold text-xs tracking-[0.3em] text-primary uppercase mb-4 block">{t.label}</span>
+        <h2 className="font-headline text-4xl font-bold italic uppercase">{t.title}</h2>
       </div>
 
       <div className="bg-surface-container-low border border-outline-variant p-10">

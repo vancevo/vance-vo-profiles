@@ -1,20 +1,25 @@
 import { motion } from 'motion/react';
 import { Star, GitFork, BookOpen } from 'lucide-react';
 import { GithubRepo } from '@workspace/shared';
+import { useAppStore } from '../store/useAppStore';
+import { translations } from '../locales';
 
 interface Props {
   repos: GithubRepo[];
 }
 
 export default function GithubHighlight({ repos }: Props) {
+  const { language } = useAppStore();
+  const t = translations[language].github;
+
   if (!repos || repos.length === 0) return null;
 
   return (
     <section id="github" className="py-32 px-6 max-w-7xl mx-auto bg-surface-container-low border-y border-outline-variant/30">
       <div className="flex justify-between items-end mb-16">
         <div>
-          <span className="font-headline font-bold text-xs tracking-[0.3em] uppercase text-outline mb-4 block">Open Source</span>
-          <h2 className="font-headline text-5xl font-bold uppercase"><span className="text-primary italic">Github</span> Highlights</h2>
+          <span className="font-headline font-bold text-xs tracking-[0.3em] uppercase text-outline mb-4 block">{t.label}</span>
+          <h2 className="font-headline text-5xl font-bold uppercase"><span className="text-primary italic">{t.title}</span> {t.titleHighlight}</h2>
         </div>
       </div>
 

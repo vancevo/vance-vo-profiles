@@ -1,7 +1,12 @@
 import { motion } from 'motion/react';
 import { Download } from 'lucide-react';
+import { useAppStore } from '../store/useAppStore';
+import { translations } from '../locales';
 
 export default function Hero() {
+  const { language } = useAppStore();
+  const t = translations[language].hero;
+
   return (
     <section className="min-h-[90vh] flex flex-col justify-center px-6 max-w-7xl mx-auto py-20">
       <div className="grid grid-cols-12 gap-8 items-center">
@@ -12,20 +17,24 @@ export default function Hero() {
           className="col-span-12 lg:col-span-8"
         >
           <span className="text-primary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-6 block">
-            Frontend Architect & UI Engineer
+            {t.role}
           </span>
           <h1 className="font-headline text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-8 uppercase">
-            Crafting <span className="text-primary italic text-glow">Precision</span> Through Code.
+            {t.titleHighlight.toLowerCase() === 'precision' ? (
+              <>Crafting <span className="text-primary italic text-glow">{t.titleHighlight}</span> {t.titleSuffix}</>
+            ) : (
+              <><span className="text-primary italic text-glow">{t.titleHighlight}</span> {t.titleSuffix}</>
+            )}
           </h1>
           <p className="text-on-surface-variant text-lg max-w-xl mb-12 leading-relaxed">
-            I bridge the gap between complex engineering and editorial design, building high-performance web interfaces with a focus on structural integrity and visual soul.
+            {t.description}
           </p>
           <div className="flex flex-wrap items-center gap-6">
             <button className="bg-primary text-white font-headline font-bold px-8 py-4 flex items-center gap-3 hover:bg-primary/90 transition-all active:scale-95 uppercase tracking-tight">
-              Download CV <Download className="w-5 h-5" />
+              {t.download} <Download className="w-5 h-5" />
             </button>
             <a href="#portfolio" className="font-headline font-bold uppercase text-sm border-b-2 border-outline-variant hover:border-primary transition-all py-2">
-              View Selected Works
+              {t.viewWorks}
             </a>
           </div>
         </motion.div>

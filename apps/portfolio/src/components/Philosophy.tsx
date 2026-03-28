@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Terminal, Layers, Wrench, Code } from 'lucide-react';
 import { TechCategory } from '@workspace/shared';
+import { useAppStore } from '../store/useAppStore';
+import { translations } from '../locales';
 
 const getIcon = (iconName: string, className: string) => {
   switch (iconName) {
@@ -18,6 +20,16 @@ interface Props {
 
 export default function Philosophy({ techStack }: Props) {
   const [stackIndex, setStackIndex] = useState(0);
+  const { language } = useAppStore();
+  const t = translations[language].philosophy;
+
+  useEffect(() => {
+    if (!techStack || techStack.length <= 1) return;
+    const interval = setInterval(() => {
+      setStackIndex((prev) => (prev + 1) % techStack.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [techStack]);
 
   if (!techStack || techStack.length === 0) return null;
 
@@ -29,17 +41,17 @@ export default function Philosophy({ techStack }: Props) {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-12 gap-12 items-start">
           <div className="col-span-12 md:col-span-5">
-            <h2 className="font-headline text-4xl font-bold mb-8 text-primary uppercase">01 // THE PHILOSOPHY</h2>
+            <h2 className="font-headline text-4xl font-bold mb-8 text-primary uppercase">{t.title}</h2>
             <div className="space-y-6 text-on-surface-variant leading-relaxed text-lg">
-              <p>For me, code is more than logic—it's the architecture of human experience. I specialize in building interfaces that don't just function, but tell a story through movement and structure.</p>
-              <p>With 6+ years in the industry, I've led development for fintech platforms and luxury brand portfolios, always prioritizing the "No-Line" rule and tonal depth.</p>
+              <p>{t.p1}</p>
+              <p>{t.p2}</p>
             </div>
           </div>
           
           <div className="col-span-12 md:col-span-7">
             <div className="bg-surface-container p-8 relative overflow-hidden min-h-[300px] flex flex-col justify-between">
               <div className="flex justify-between items-center mb-12">
-                <h3 className="font-headline text-xl font-bold uppercase tracking-tight">Core Stack</h3>
+                <h3 className="font-headline text-xl font-bold uppercase tracking-tight">{t.coreStack}</h3>
                 <div className="flex gap-2">
                   <button 
                     onClick={prevStack}

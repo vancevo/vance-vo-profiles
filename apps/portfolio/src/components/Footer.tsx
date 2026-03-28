@@ -1,6 +1,11 @@
 import { ArrowUp } from 'lucide-react';
+import { useAppStore } from '../store/useAppStore';
+import { translations } from '../locales';
 
 export default function Footer() {
+  const { language } = useAppStore();
+  const t = translations[language].footer;
+
   return (
     <footer className="bg-surface border-t border-outline-variant/30 py-16 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
@@ -9,7 +14,7 @@ export default function Footer() {
             PRECISION EDITORIAL
           </div>
           <p className="text-[10px] font-headline font-bold uppercase tracking-[0.3em] text-outline">
-            © 2024 PRECISION EDITORIAL. ALL RIGHTS RESERVED.
+            © 2024 PRECISION EDITORIAL. {t.rights}
           </p>
         </div>
 

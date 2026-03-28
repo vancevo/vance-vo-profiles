@@ -1,20 +1,25 @@
 import { motion } from 'motion/react';
 import { ExternalLink, Code } from 'lucide-react';
 import { Project } from '@workspace/shared';
+import { useAppStore } from '../store/useAppStore';
+import { translations } from '../locales';
 
 interface Props {
   projects: Project[];
 }
 
 export default function Portfolio({ projects }: Props) {
+  const { language } = useAppStore();
+  const t = translations[language].portfolio;
+
   if (!projects || projects.length === 0) return null;
 
   return (
     <section id="portfolio" className="py-32 px-6 max-w-7xl mx-auto">
       <div className="flex justify-between items-end mb-20">
         <div>
-          <span className="font-headline font-bold text-xs tracking-[0.3em] uppercase text-outline mb-4 block">Portfolio</span>
-          <h2 className="font-headline text-5xl font-bold uppercase">Curated <span className="text-primary">Works</span></h2>
+          <span className="font-headline font-bold text-xs tracking-[0.3em] uppercase text-outline mb-4 block">{t.label}</span>
+          <h2 className="font-headline text-5xl font-bold uppercase">{t.title} <span className="text-primary">{t.titleHighlight}</span></h2>
         </div>
         <div className="hidden md:block font-headline text-sm font-bold text-outline uppercase tracking-widest">
           [ 2022 - 2024 ]

@@ -4,6 +4,7 @@ import { ChevronRight } from 'lucide-react';
 import { Experience } from '@workspace/shared';
 import { useAppStore } from '../store/useAppStore';
 import { translations } from '../locales';
+import { tData } from '../utils/i18n';
 
 interface Props {
   experiences: Experience[];
@@ -26,49 +27,58 @@ export default function ExperienceSection({ experiences }: Props) {
           </div>
           
           <div className="col-span-12 lg:col-span-8 space-y-4">
-            {experiences.map((exp) => (
-              <div 
-                key={exp.id}
-                className={`bg-surface-container border-l-4 transition-all duration-300 ${activeAccordion === exp.id ? 'border-primary' : 'border-outline-variant'}`}
+            {experiences.map((exp, index) => (
+              <motion.div 
+                key={exp.id || index}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`border border-outline-variant bg-surface transition-colors ${activeAccordion === exp.id ? 'border-primary shadow-[0_0_30px_rgba(251,84,43,0.1)]' : 'hover:border-primary/50'}`}
               >
-                <button 
+                <div 
+                  className="p-8 cursor-pointer flex justify-between items-center group"
                   onClick={() => setActiveAccordion(activeAccordion === exp.id ? null : (exp.id || null))}
-                  className="w-full text-left p-8 flex justify-between items-center"
                 >
                   <div>
-                    <span className={`font-headline font-bold text-[10px] tracking-[0.2em] mb-2 block uppercase ${activeAccordion === exp.id ? 'text-primary' : 'text-outline'}`}>
-                      {exp.period}
-                    </span>
-                    <h3 className="font-headline text-2xl font-bold uppercase">{exp.role}</h3>
-                    <p className="text-outline font-bold uppercase tracking-widest text-xs mt-1">{exp.company}</p>
+                    <h3 className="font-headline text-3xl font-bold mb-2 group-hover:text-primary transition-colors">{tData(exp.company, language)}</h3>
+                    <p className="text-primary font-mono text-sm uppercase tracking-widest">{tData(exp.role, language)}</p>
                   </div>
-                  <motion.div
-                    animate={{ rotate: activeAccordion === exp.id ? 180 : 0 }}
-                    className={activeAccordion === exp.id ? 'text-primary' : 'text-outline'}
-                  >
-                    <ChevronRight className="w-6 h-6 rotate-90" />
-                  </motion.div>
-                </button>
-                
+                  <div className="flex items-center gap-6">
+                    <span className="hidden md:block font-headline text-sm font-bold text-outline uppercase tracking-widest">
+                      [ {exp.period} ]
+                    </span>
+                    <motion.div
+                      animate={{ rotate: activeAccordion === exp.id ? 90 : 0 }}
+                      className={`w-12 h-12 flex items-center justify-center border ${activeAccordion === exp.id ? 'border-primary text-primary' : 'border-outline-variant text-on-surface'}`}
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </motion.div>
+                  </div>
+                </div>
+
                 <AnimatePresence>
                   {activeAccordion === exp.id && (
-                    <motion.div 
+                    <motion.div
                       initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
+                      animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-8 pb-8 space-y-4 text-on-surface-variant leading-relaxed">
-                        <ul className="list-disc list-inside space-y-2">
-                          {exp.description.map((item, i) => (
-                            <li key={i}>{item}</li>
+                      <div className="p-8 pt-0 text-on-surface-variant text-lg">
+                        <ul className="space-y-4">
+                          {exp.description.map((desc, i) => (
+                            <li key={i} className="flex items-start gap-4">
+                              <span className="text-primary mt-2 flex-shrink-0">―</span>
+                              <span className="leading-relaxed">{tData(desc, language)}</span>
+                            </li>
                           ))}
                         </ul>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

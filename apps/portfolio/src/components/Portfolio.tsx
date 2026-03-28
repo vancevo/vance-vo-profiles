@@ -3,6 +3,7 @@ import { ExternalLink, Code } from 'lucide-react';
 import { Project } from '@workspace/shared';
 import { useAppStore } from '../store/useAppStore';
 import { translations } from '../locales';
+import { tData } from '../utils/i18n';
 
 interface Props {
   projects: Project[];
@@ -26,43 +27,44 @@ export default function Portfolio({ projects }: Props) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-        {projects.map((project, idx) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">
+        {projects.map((project, index) => (
           <motion.div 
-            key={project.id || idx}
-            initial={{ opacity: 0, y: 30 }}
+            key={project.id}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            className={`group ${idx % 2 !== 0 ? 'md:mt-24' : ''}`}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: index * 0.1 }}
+            className="group cursor-pointer"
           >
-            <div className="aspect-video bg-surface-container-highest overflow-hidden relative mb-8">
+            <div className="relative aspect-[4/3] mb-8 overflow-hidden bg-surface-container group-hover:bg-surface-container-high transition-colors p-4">
               <img 
                 src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                referrerPolicy="no-referrer"
+                alt={tData(project.title, language)} 
+                className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out"
               />
-              <div className="absolute inset-0 bg-surface/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                <button className="bg-primary text-white p-4 hover:bg-primary/90 transition-all">
-                  <ExternalLink className="w-6 h-6" />
-                </button>
-                <button className="bg-primary text-white p-4 hover:bg-primary/90 transition-all">
-                  <Code className="w-6 h-6" />
-                </button>
+              <div className="absolute inset-0 border border-outline-variant group-hover:border-primary/50 transition-colors pointer-events-none" />
+              
+              <div className="absolute top-8 right-8 w-12 h-12 bg-surface text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0 shadow-xl">
+                <ExternalLink className="w-5 h-5" />
               </div>
             </div>
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="font-headline text-2xl font-bold mb-2 group-hover:text-primary transition-colors uppercase">{project.title}</h3>
-                <p className="text-on-surface-variant mb-6">{project.description}</p>
-                <div className="flex gap-4">
-                  {project.tags.map((tag, i) => (
-                    <span key={i} className="text-[10px] font-bold tracking-widest text-outline uppercase">{tag}</span>
-                  ))}
-                </div>
-              </div>
-              <span className="font-headline text-[10px] font-bold text-primary border border-primary/30 px-3 py-1">{project.year}</span>
+
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="font-headline text-3xl font-bold group-hover:text-primary transition-colors">{tData(project.title, language)}</h3>
+              <span className="font-mono text-xs text-outline-variant">{project.year}</span>
+            </div>
+
+            <p className="text-on-surface-variant mb-8 line-clamp-3">
+              {tData(project.description, language)}
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              {project.tags.map((tag, i) => (
+                <span key={i} className="text-[10px] font-bold tracking-[0.2em] px-3 py-1 border border-outline-variant uppercase text-outline group-hover:border-primary/30 transition-colors">
+                  {tag}
+                </span>
+              ))}
             </div>
           </motion.div>
         ))}

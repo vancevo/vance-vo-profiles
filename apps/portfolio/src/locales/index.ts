@@ -1,7 +1,7 @@
 export const translations = {
   EN: {
     nav: {
-      philosophy: 'Philosophy',
+      objective: 'Objective',
       portfolio: 'Portfolio',
       experience: 'Work History',
       activity: 'Activity',
@@ -15,8 +15,8 @@ export const translations = {
       download: 'Download CV',
       viewWorks: 'View Selected Works'
     },
-    philosophy: {
-      title: '01 // THE PHILOSOPHY',
+    objective: {
+      title: '01 // THE OBJECTIVE',
       p1: "For me, code is more than logic—it's the architecture of human experience. I specialize in building interfaces that don't just function, but tell a story through movement and structure.",
       p2: 'With 6+ years in the industry, I\'ve led development for fintech platforms and luxury brand portfolios, always prioritizing the "No-Line" rule and tonal depth.',
       coreStack: 'Core Stack'
@@ -51,7 +51,7 @@ export const translations = {
   },
   VN: {
     nav: {
-      philosophy: 'Triết Lý',
+      objective: 'Mục Tiêu',
       portfolio: 'Dự Án',
       experience: 'Kinh Nghiệm',
       activity: 'Hoạt Động',
@@ -65,8 +65,8 @@ export const translations = {
       download: 'Tải CV',
       viewWorks: 'Xem Dự Án Tuyển Chọn'
     },
-    philosophy: {
-      title: '01 // TRIẾT LÝ',
+    objective: {
+      title: '01 // MỤC TIÊU',
       p1: 'Với tôi, code không chỉ là logic—đó là kiến trúc của trải nghiệm người dùng. Tôi chuyên xây dựng các giao diện kể chuyện thông qua chuyển động và cấu trúc.',
       p2: 'Với hơn 6 năm kinh nghiệm, tôi đã dẫn dắt phát triển các nền tảng fintech và thương hiệu xa xỉ, luôn đặt quy tắc "No-Line" và chiều sâu hình ảnh lên hàng đầu.',
       coreStack: 'Công Nghệ Cốt Lõi'

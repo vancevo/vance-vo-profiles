@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Terminal, Layers, Wrench, Code } from 'lucide-react';
-import { TechCategory } from '@workspace/shared';
+import { TechCategory, ObjectiveData } from '@workspace/shared';
 import { useAppStore } from '../store/useAppStore';
+import { tData } from '../utils/i18n';
 import { translations } from '../locales';
 
 const getIcon = (iconName: string, className: string) => {
@@ -16,12 +17,14 @@ const getIcon = (iconName: string, className: string) => {
 
 interface Props {
   techStack: TechCategory[];
+  objectiveData: ObjectiveData;
 }
 
-export default function Philosophy({ techStack }: Props) {
+export default function Objective({ techStack, objectiveData }: Props) {
   const [stackIndex, setStackIndex] = useState(0);
   const { language } = useAppStore();
-  const t = translations[language].philosophy;
+  const t = objectiveData;
+  const tStatic = translations[language].objective;
 
   useEffect(() => {
     if (!techStack || techStack.length <= 1) return;
@@ -37,21 +40,21 @@ export default function Philosophy({ techStack }: Props) {
   const prevStack = () => setStackIndex((prev) => (prev - 1 + techStack.length) % techStack.length);
 
   return (
-    <section id="philosophy" className="py-32 bg-surface-container-low">
+    <section id="objective" className="py-32 bg-surface-container-low">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-12 gap-12 items-start">
           <div className="col-span-12 md:col-span-5">
-            <h2 className="font-headline text-4xl font-bold mb-8 text-primary uppercase">{t.title}</h2>
+            <h2 className="font-headline text-4xl font-bold mb-8 text-primary uppercase">{tStatic.title}</h2>
             <div className="space-y-6 text-on-surface-variant leading-relaxed text-lg">
-              <p>{t.p1}</p>
-              <p>{t.p2}</p>
+              <p>{tData(t.p1, language)}</p>
+              <p>{tData(t.p2, language)}</p>
             </div>
           </div>
           
           <div className="col-span-12 md:col-span-7">
             <div className="bg-surface-container p-8 relative overflow-hidden min-h-[300px] flex flex-col justify-between">
               <div className="flex justify-between items-center mb-12">
-                <h3 className="font-headline text-xl font-bold uppercase tracking-tight">{t.coreStack}</h3>
+                <h3 className="font-headline text-xl font-bold uppercase tracking-tight">{tStatic.coreStack}</h3>
                 <div className="flex gap-2">
                   <button 
                     onClick={prevStack}
@@ -78,7 +81,7 @@ export default function Philosophy({ techStack }: Props) {
                 >
                   <div className="flex items-center gap-4 mb-6">
                     {getIcon(techStack[stackIndex].iconName || 'Terminal', "w-8 h-8 text-primary")}
-                    <span className="text-primary font-headline font-bold uppercase tracking-widest">{techStack[stackIndex].name}</span>
+                    <span className="text-primary font-headline font-bold uppercase tracking-widest">{tData(techStack[stackIndex].name, language)}</span>
                   </div>
                   <div className="flex flex-wrap gap-3">
                     {techStack[stackIndex].items.map((item, i) => (

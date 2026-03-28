@@ -57,18 +57,18 @@ export default function Activity({ activityData }: Props) {
   const t = translations[language].activity;
 
   return (
-    <section id="activity" className="py-32 px-6 max-w-7xl mx-auto">
-      <div className="text-center mb-16">
+    <section id="activity" className="py-20 sm:py-32 px-6 max-w-7xl mx-auto">
+      <div className="text-center mb-12 sm:mb-16">
         <span className="font-headline font-bold text-xs tracking-[0.3em] text-primary uppercase mb-4 block">{t.label}</span>
-        <h2 className="font-headline text-4xl font-bold italic uppercase">{t.title}</h2>
+        <h2 className="font-headline text-3xl sm:text-4xl font-bold italic uppercase leading-tight">{t.title}</h2>
       </div>
 
-      <div className="bg-surface-container-low border border-outline-variant p-10">
-        <div className="flex flex-col gap-8">
+      <div className="bg-surface-container-low border border-outline-variant p-6 sm:p-10">
+        <div className="flex flex-col gap-6 sm:gap-8">
           <div className="flex flex-wrap justify-between items-end gap-4">
-            <div className="flex items-center gap-4">
-              <GitBranch className="w-6 h-6 text-primary" />
-              <span className="font-headline font-bold uppercase tracking-tighter text-xl">Github / vancevo</span>
+            <div className="flex items-center gap-3 sm:gap-4">
+              <GitBranch className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              <span className="font-headline font-bold uppercase tracking-tighter text-lg sm:text-xl">Github / vancevo</span>
             </div>
             <div className="text-[10px] font-bold tracking-widest uppercase text-outline">
               {/* {t.commits} <span className="text-on-surface">{activityData.totalContributions.toLocaleString()}</span> */}
@@ -78,8 +78,9 @@ export default function Activity({ activityData }: Props) {
 
           {/* <ContributionGraph contributions={activityData.contributions} /> */}
           <ContributionGraph contributions={[]} />
+          
           <div className="flex flex-wrap justify-between items-center pt-6 border-t border-outline-variant/30 gap-6">
-            <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-outline">
+            <div className="flex items-center gap-4 sm:gap-6 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-outline">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-surface-container-highest" /> {t.less}
               </div>
@@ -89,7 +90,7 @@ export default function Activity({ activityData }: Props) {
                 <div className="w-3 h-3 bg-primary" /> {t.more}
               </div>
             </div>
-            <div className="text-[10px] font-bold tracking-widest uppercase text-primary">
+            <div className="text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-primary">
               {/* {t.streak} */}
               Consistency Level: High
             </div>

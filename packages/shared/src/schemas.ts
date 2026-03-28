@@ -47,7 +47,7 @@ export const GithubRepoSchema = z.object({
   name: z.string(),
   description: z.string().nullable(),
   html_url: z.string().url(),
-  stargazers_count: z.number(),
+  stargazers_count: z.union([z.number(), z.string()]),
   language: z.string().nullable(),
   updated_at: z.string()
 });

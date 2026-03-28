@@ -12,6 +12,7 @@ import ExperienceSection from './components/Experience';
 import Activity from './components/Activity';
 import GithubHighlight from './components/GithubHighlight';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 // Mock dataloader until backend routes are fully seeded
 const fetchPortfolioData = async ({ queryKey }: any) => {
@@ -235,68 +236,18 @@ export default function App() {
     );
   }
 
-  const getNavClass = (id: string) =>
-    activeSection === id
-      ? "text-primary border-b-2 border-primary pb-1"
-      : "hover:text-primary transition-colors";
-
   return (
     <div className="min-h-screen selection:bg-primary/30 transition-colors duration-300">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30 h-16 flex items-center">
-        <div className="max-w-7xl mx-auto w-full px-6 flex justify-between items-center">
-          <div className="text-xl font-bold tracking-tighter text-primary font-headline uppercase">
-            {language === 'EN' ? 'VANCE VO' : 'VINH VÕ'}
-          </div>
-
-          <div className="hidden md:flex items-center gap-8 font-headline text-xs font-bold uppercase tracking-widest">
-            <a href="#objective" onClick={() => setActiveSection('objective')} className={getNavClass('objective')}>{t.nav.objective}</a>
-            <a href="#portfolio" onClick={() => setActiveSection('portfolio')} className={getNavClass('portfolio')}>{t.nav.portfolio}</a>
-            <a href="#experience" onClick={() => setActiveSection('experience')} className={getNavClass('experience')}>{t.nav.experience}</a>
-            <a href="#activity" onClick={() => setActiveSection('activity')} className={getNavClass('activity')}>{t.nav.activity}</a>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setLanguage(language === 'EN' ? 'VN' : 'EN')}
-              className="hidden sm:block text-[10px] font-headline font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity"
-            >
-              {language === 'EN' ? 'Language (EN)' : 'Ngôn Ngữ (VN)'}
-            </button>
-            <button
-              onClick={toggleTheme}
-              className="p-2 text-primary hover:bg-surface-container-high transition-colors"
-            >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
-            <button
-              className="md:hidden p-2 text-primary"
-              onClick={() => setMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-surface pt-24 px-6 md:hidden"
-          >
-            <div className="flex flex-col gap-8 font-headline text-2xl font-bold uppercase tracking-tighter">
-              <a href="#objective" onClick={() => { setActiveSection('objective'); setMenuOpen(false); }}>{t.nav.objective}</a>
-              <a href="#portfolio" onClick={() => { setActiveSection('portfolio'); setMenuOpen(false); }}>{t.nav.portfolio}</a>
-              <a href="#experience" onClick={() => { setActiveSection('experience'); setMenuOpen(false); }}>{t.nav.experience}</a>
-              <a href="#activity" onClick={() => { setActiveSection('activity'); setMenuOpen(false); }}>{t.nav.activity}</a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Navbar
+        language={language as 'EN' | 'VN'}
+        setLanguage={setLanguage}
+        theme={theme}
+        toggleTheme={toggleTheme}
+        isMenuOpen={isMenuOpen}
+        setMenuOpen={setMenuOpen}
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
 
       <main className="pt-16">
         <Hero heroData={data.hero} />

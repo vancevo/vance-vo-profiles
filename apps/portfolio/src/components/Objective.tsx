@@ -40,33 +40,35 @@ export default function Objective({ techStack, objectiveData }: Props) {
   const prevStack = () => setStackIndex((prev) => (prev - 1 + techStack.length) % techStack.length);
 
   return (
-    <section id="objective" className="py-32 bg-surface-container-low">
+    <section id="objective" className="py-16 sm:py-32 bg-surface-container-low overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-12 gap-12 items-start">
-          <div className="col-span-12 md:col-span-5">
-            <h2 className="font-headline text-4xl font-bold mb-8 text-primary uppercase">{tStatic.title}</h2>
-            <div className="space-y-6 text-on-surface-variant leading-relaxed text-lg">
+        <div className="grid grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div className="col-span-12 lg:col-span-5 text-center lg:text-left">
+            <h2 className="font-headline text-2xl sm:text-4xl font-bold mb-6 sm:mb-8 text-primary uppercase tracking-tight">{tStatic.title}</h2>
+            <div className="space-y-4 sm:space-y-6 text-on-surface-variant leading-relaxed text-sm sm:text-lg opacity-90">
               <p>{tData(t.p1, language)}</p>
               <p>{tData(t.p2, language)}</p>
             </div>
           </div>
           
-          <div className="col-span-12 md:col-span-7">
-            <div className="bg-surface-container p-8 relative overflow-hidden min-h-[300px] flex flex-col justify-between">
-              <div className="flex justify-between items-center mb-12">
-                <h3 className="font-headline text-xl font-bold uppercase tracking-tight">{tStatic.coreStack}</h3>
-                <div className="flex gap-2">
+          <div className="col-span-12 lg:col-span-7">
+            <div className="bg-surface-container p-5 sm:p-10 relative overflow-hidden min-h-[280px] sm:min-h-[320px] flex flex-col justify-between border border-outline-variant/20 shadow-sm">
+              <div className="flex justify-between items-center mb-8 sm:mb-12">
+                <h3 className="font-headline text-base sm:text-xl font-bold uppercase tracking-tighter text-outline">{tStatic.coreStack}</h3>
+                <div className="flex gap-1.5 sm:gap-2">
                   <button 
                     onClick={prevStack}
-                    className="w-10 h-10 flex items-center justify-center border border-outline-variant hover:border-primary hover:text-primary transition-all"
+                    className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center border border-outline-variant hover:border-primary hover:text-primary transition-all active:scale-90 bg-surface/50"
+                    aria-label="Previous stack"
                   >
-                    <ChevronLeft className="w-5 h-5" />
+                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                   <button 
                     onClick={nextStack}
-                    className="w-10 h-10 flex items-center justify-center border border-outline-variant hover:border-primary hover:text-primary transition-all"
+                    className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center border border-outline-variant hover:border-primary hover:text-primary transition-all active:scale-90 bg-surface/50"
+                    aria-label="Next stack"
                   >
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                 </div>
               </div>
@@ -79,13 +81,15 @@ export default function Objective({ techStack, objectiveData }: Props) {
                   exit={{ opacity: 0, x: -20 }}
                   className="flex-1"
                 >
-                  <div className="flex items-center gap-4 mb-6">
-                    {getIcon(techStack[stackIndex].iconName || 'Terminal', "w-8 h-8 text-primary")}
-                    <span className="text-primary font-headline font-bold uppercase tracking-widest">{tData(techStack[stackIndex].name, language)}</span>
+                  <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8">
+                    <div className="w-10 h-10 sm:w-14 sm:h-14 bg-primary/10 flex items-center justify-center">
+                      {getIcon(techStack[stackIndex].iconName || 'Terminal', "w-5 h-5 sm:w-7 sm:h-7 text-primary")}
+                    </div>
+                    <span className="text-primary font-headline font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs">{tData(techStack[stackIndex].name, language)}</span>
                   </div>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
                     {techStack[stackIndex].items.map((item, i) => (
-                      <span key={i} className="px-4 py-2 bg-surface-container-high border border-outline-variant text-xs font-bold uppercase tracking-widest">
+                      <span key={i} className="px-3 py-1.5 sm:px-5 sm:py-2.5 bg-surface-container-high border border-outline-variant/30 text-[9px] sm:text-[11px] font-bold uppercase tracking-widest text-on-surface/80 hover:text-primary transition-colors">
                         {item}
                       </span>
                     ))}

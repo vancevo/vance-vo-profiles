@@ -23,8 +23,8 @@ export const translations = {
     },
     portfolio: {
       label: 'Portfolio',
-      title: 'Curated',
-      titleHighlight: 'Works'
+      title: 'Projects',
+      titleHighlight: ''
     },
     github: {
       label: 'Open Source',
@@ -72,9 +72,9 @@ export const translations = {
       coreStack: 'Công Nghệ Cốt Lõi'
     },
     portfolio: {
-      label: 'Dự Án',
-      title: 'Các Tác Phẩm',
-      titleHighlight: 'Tuyển Chọn'
+      label: 'Thông tin',
+      title: 'Dự án',
+      titleHighlight: ''
     },
     github: {
       label: 'Mã Nguồn Mở',

@@ -26,7 +26,7 @@ export default function Hero({ heroData }: Props) {
         >
           <div className="relative w-32 h-32 sm:w-48 sm:h-48 lg:w-full lg:h-full lg:aspect-[4/5] bg-surface-container-low overflow-hidden group border border-outline-variant/30 lg:border-none rounded-full lg:rounded-none">
             <img
-              src="https://media.licdn.com/dms/image/v2/D4D03AQEcDXmj1mTJnQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1667814964345?e=1776297600&v=beta&t=uFfKVAMYL3hkME2sm1s4Ji3QUM_9NOjUGuAFu5_yLug"
+              src="https://media.licdn.com/dms/image/v2/D4D03AQEcDXmj1mTJnQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1667814964345?e=1779321600&v=beta&t=zUZowTdGW8ZTS3Sxqg9G4Vaj1FqFA5XfVjq7LEETHK4"
               alt="Profile"
               className="w-full h-full object-cover transition-all duration-700"
               referrerPolicy="no-referrer"
@@ -52,7 +52,7 @@ export default function Hero({ heroData }: Props) {
               {tData(t.description, language)}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
-              <a 
+              <a
                 href={cvFile}
                 download="CV_VinhVP.pdf"
                 className="w-full sm:w-auto bg-primary text-white font-headline font-bold px-8 py-4 flex items-center justify-center gap-3 hover:bg-primary/90 transition-all active:scale-95 uppercase tracking-wide text-[10px] sm:text-sm"
